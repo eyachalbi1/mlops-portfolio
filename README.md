@@ -2,7 +2,7 @@
 
 > "J'ai construit un pipeline MLOps complet simulant un cycle de vie de modèle en production — du versioning des données jusqu'au monitoring du drift, avec CI/CD qui valide automatiquement la qualité du modèle avant déploiement."
 
-![CI/CD](https://github.com/YOUR_GITHUB_USER/mlops-portfolio/actions/workflows/ci-cd.yml/badge.svg)
+![CI/CD](https://github.com/eyachalbi1/mlops-portfolio/actions/workflows/ci-cd.yml/badge.svg)
 
 ## Architecture
 
