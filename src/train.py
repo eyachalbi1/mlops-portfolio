@@ -52,11 +52,11 @@ def get_models(scale_pos_weight: float) -> dict:
 
 
 def log_model_safe(model, name: str) -> None:
-    """Log model to MLflow, handling XGBoost trusted types for MLflow 3.x."""
+    """Log model to MLflow, compatible with MLflow 2.x and 3.x."""
     if "XGB" in type(model).__name__:
-        mlflow.xgboost.log_model(model, name=name)
+        mlflow.xgboost.log_model(model, artifact_path=name)
     else:
-        mlflow.sklearn.log_model(model, name=name)
+        mlflow.sklearn.log_model(model, artifact_path=name)
 
 
 def train(train_path: str, test_path: str, model_dir: str) -> None:
