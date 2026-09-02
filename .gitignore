@@ -1,0 +1,33 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+.env.*
+
+# Data (versioned by DVC)
+data/raw/
+data/processed/
+
+# Models (versioned by DVC)
+models/
+
+# MLflow
+mlruns/
+mlflow.db
+
+# DVC cache
+.dvc/cache/
+dvc-storage/
+
+# Reports
+monitoring/drift_report.html
+
+# Misc
+.DS_Store
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/

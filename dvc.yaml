@@ -1,0 +1,38 @@
+stages:
+  preprocess:
+    cmd: python src/data/preprocess.py --input data/raw/churn.csv --output data/processed
+    deps:
+      - data/raw/churn.csv
+      - src/data/preprocess.py
+    outs:
+      - data/processed/train.csv
+      - data/processed/test.csv
+
+  train:
+    cmd: python src/train.py --train data/processed/train.csv --test data/processed/test.csv --model-dir models
+    deps:
+      - data/processed/train.csv
+      - data/processed/test.csv
+      - src/train.py
+    outs:
+      - models/model.pkl
+    metrics:
+      - metrics.json:
+          cache: false
+
+  evaluate:
+    cmd: python src/evaluate.py --model models/model.pkl --test data/processed/test.csv
+    deps:
+      - models/model.pkl
+      - data/processed/test.csv
+      - src/evaluate.py
+
+  drift:
+    cmd: python monitoring/drift_report.py --train data/processed/train.csv --test data/processed/test.csv --output monitoring/drift_report.html
+    deps:
+      - data/processed/train.csv
+      - data/processed/test.csv
+      - monitoring/drift_report.py
+    outs:
+      - monitoring/drift_report.html:
+          cache: false
